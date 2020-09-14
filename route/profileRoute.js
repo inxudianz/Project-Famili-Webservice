@@ -29,7 +29,26 @@ router.get(`/${authVersion}/detail/:id`, (request, response) => {
 });
 
 router.put(`/${authVersion}/save` , (request, response) => {
-
+	var body = request.body;
+	if(body.userID != null) {
+		if(body.name != null && body.phoneNumber != null) {
+			database.collection('user').doc(body.userID)
+			.update({
+				name : body.name,
+				phoneNumber : body.phoneNumber
+			})
+			.then((result) => {
+				response.send('Success');
+			})
+			.catch((error) => {
+				response.status(500).send(error);
+			});
+		} else {
+			response.status(500).send('Invalid');
+		}
+	} else {
+		response.status(500).send('Invalid');
+	}
 });
 
 router.get(`/${authVersion}/help` , (request, response) => {
