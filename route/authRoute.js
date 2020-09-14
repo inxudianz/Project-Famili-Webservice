@@ -17,9 +17,9 @@ router.post(`/${authVersion}/register`, (request, response) => {
 			name: body.name,
 			phoneNumber: body.phoneNumber
 		})
-		response.send("Valid");
+		response.send('Success');
 	} else {
-		response.send('Invalid');
+		response.status(500).send('Invalid');
 	}
 });
 
