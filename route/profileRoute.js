@@ -33,7 +33,19 @@ router.put(`/${authVersion}/save` , (request, response) => {
 });
 
 router.get(`/${authVersion}/help` , (request, response) => {
-
+	var helpDoc = 'help';
+	database.collection('information').doc(helpDoc)
+	.get()
+	.then((result) => {
+		if(!result.exists) {
+			response.status(500).send('Invalid');
+		} else {
+			response.send(result.data());
+		}
+	})
+	.catch((error) => {
+		response.status(500).send(error);
+	})
 });
 
 router.get(`/${authVersion}/tos` , (request, response) => {
