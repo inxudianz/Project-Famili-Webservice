@@ -38,7 +38,7 @@ router.put(`/${authVersion}/save` , (request, response) => {
 				phoneNumber : body.phoneNumber
 			})
 			.then((result) => {
-				response.send('Success');
+				response.send(result);
 			})
 			.catch((error) => {
 				response.status(500).send(error);
