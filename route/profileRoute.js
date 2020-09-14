@@ -16,13 +16,13 @@ router.get(`/${authVersion}/detail/:id`, (request, response) => {
 		.get()
 		.then((result) => {
 			if(!result.exists) {
-				response.send("NO DATA");
+				response.status(500).send('Bad Data!');
 			} else {
 				response.send(result.data());
 			}
 		})
 		.catch((error) => {
-			response.send(error);
+			response.status(500).send(error);
 		});
 	}
 });
