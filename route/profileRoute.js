@@ -36,7 +36,19 @@ router.get(`/${authVersion}/help` , (request, response) => {
 });
 
 router.get(`/${authVersion}/tos` , (request, response) => {
-
+	var tosDoc = 'tos';
+	database.collection('information').doc(tosDoc)
+	.get()
+	.then((result) => {
+		if(!result.exists) {
+			response.status(500).send('Invalid');
+		} else {
+			response.send(result.data());
+		}
+	})
+	.catch((error) => {
+		response.status(500).send(error);
+	});
 });
 
 router.get(`/${authVersion}/policy` , (request, response) => {
