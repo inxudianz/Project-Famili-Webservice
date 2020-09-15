@@ -1,8 +1,6 @@
 var router = require('express').Router();
 var firebase = require('./firebase');
 var bodyParser = require('body-parser');
-const { auth } = require('./firebase');
-const e = require('cors');
 
 var database = firebase.firestore();
 router.use(bodyParser.json());
