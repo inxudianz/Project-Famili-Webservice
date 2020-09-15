@@ -5,6 +5,7 @@ module.exports = function(app) {
 
 	app.use('/auth', require('./authRoute'));
 	app.use('/profile', require('./profileRoute'));
+	app.use('/home', require('./homeRoute'));
 
 	app.use('*', function(request, response) {
 		response.send('<h1>404</h1>');
